@@ -8,10 +8,9 @@ var App = () => (
 
 var GroceryList = (props) => (
   <ul>
-    <li onClick={onListItemClick}>{props.groceries[0]}</li>
-    <li>{props.groceries[1]}</li>
-    <li>{props.groceries[2]}</li>
-    <li>{props.groceries[3]}</li>
+    {props.groceries.map(groceries => 
+      <GroceryListItem groceries={groceries} />
+    )}
   </ul>
 );
 
@@ -20,9 +19,21 @@ var onListItemClick = (event) => {
   console.log('Item was clicked');
 };
 
-var GroceryListItem = (props) => (
-  <li>{props.item[0]}</li>
-);
+
+
+class GroceryListItem extends React.Component {
+  // A `constructor` method is expected on all ES6 classes
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <li>{this.props.groceries}</li>
+    );
+  }
+}
+
 
 var Grapes = () => (
   <li>grapes</li>
