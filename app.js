@@ -15,9 +15,6 @@ var GroceryList = (props) => (
 );
 
 
-var onListItemClick = (event) => {
-  console.log('Item was clicked');
-};
 
 
 
@@ -25,11 +22,27 @@ class GroceryListItem extends React.Component {
   // A `constructor` method is expected on all ES6 classes
   constructor(props) {
     super(props);
+
+    this.state = {
+      done: false
+    };
+  }
+
+  onListItemClick() {
+    this.setState({
+      done: !this.state.done
+    });
   }
 
   render() {
+    var style = {
+      textDecoration: this.state.done ? 'line-through' : 'none'
+    };
+
+    // You can pass inline styles using React's `style` attribute to any component
+
     return (
-      <li>{this.props.groceries}</li>
+      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.groceries}</li>
     );
   }
 }
