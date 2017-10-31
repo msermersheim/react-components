@@ -1,22 +1,14 @@
-var App = () => (
-  <div>
-    <h2>Grocery List</h2>
-    <GroceryList groceries={['apples', 'bananas', 'oranges', 'grapes']}/>
-    <GroceryListItem item={['mango']}/>
-  </div>
-);
 
 var GroceryList = (props) => (
-  <ul>
-    {props.groceries.map(groceries => 
-      <GroceryListItem groceries={groceries} />
-    )}
-  </ul>
+  <div>
+    <h2>Grocery List</h2>
+    <ul>
+    {props.groceries.map(grocery => 
+      <GroceryListItem grocery={grocery} />
+    )} 
+    </ul>
+  </div>
 );
-
-
-
-
 
 class GroceryListItem extends React.Component {
   // A `constructor` method is expected on all ES6 classes
@@ -39,18 +31,10 @@ class GroceryListItem extends React.Component {
       textDecoration: this.state.done ? 'line-through' : 'none'
     };
 
-    // You can pass inline styles using React's `style` attribute to any component
-
     return (
-      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.groceries}</li>
+      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.grocery}</li>
     );
   }
 }
 
-
-var Grapes = () => (
-  <li>grapes</li>
-);
-
-
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<GroceryList groceries={['apples', 'bananas', 'oranges', 'grapes']} />, document.getElementById("app"));
